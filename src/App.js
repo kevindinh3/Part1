@@ -29,45 +29,45 @@ const App = () => {
   return <Course course={course}/>
 }
 
-const Course = (props) => {
+const Course = ({course}) => {
   return(
     <div>
-      <Header course={props.course} />
-      <Content parts={props.course.parts} />
-      <Total parts={props.course.parts} />
+      <Header course={course} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
 
-const Header = (props) => {
+const Header = ({course}) => {
   return (
     <h1>
-      {props.course.name}
+      {course.name}
     </h1>
   )
 }
 
-const AllParts = (props) => {
+const AllParts = ({result}) => {
   return(
     <div>
-      {props.result}
+      {result}
     </div>
   )
 }
 
-const Content = (props) => {
-  const result = props.parts.map(part => 
+const Content = ({parts}) => {
+  const result = parts.map(part => 
     <p key={part.id}>{[part.name,part.exercises].join(" ")}</p>
   )
   return (
     <div>
-      <AllParts parts={props.parts} result={result}/>
+      <AllParts parts={parts} result={result}/>
     </div>
   )
 }
 
-const Total = (props) => {
-  const number = props.parts.map(part => part.exercises);
+const Total = ({parts}) => {
+  const number = parts.map(part => part.exercises);
   const sum = number.reduce((a,b) => a + b,0);
   return (
     <b>{sum}</b>
